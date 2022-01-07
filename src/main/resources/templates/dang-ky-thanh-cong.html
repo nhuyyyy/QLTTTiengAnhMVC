@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="/flagments/header::header">
+        <title>Title</title>
+    </th:block>
+</head>
+<body class="materialdesign">
+<th:block th:replace="/flagments/sidebar::sidebar"></th:block> 
+    <p class="text-center" th:text="${thiSinh.hoTen}"></p>
+    <p class="text-center" th:text="${#dates.format(thiSinh.ngaySinh, 'dd-MMM-yyyy')}"></p>
+    <p class="text-center" th:text="${thiSinh.noiSinh}"></p>
+    <p class="text-center" th:text="${thiSinh.soCmnd}"></p>
+    <p class="text-center" th:text="${thiSinh.soDienThoai}"></p>
+    <p class="text-center" th:text="${thiSinh.email}"></p>
+<th:block th:replace="/flagments/footer::footer"></th:block>
+</body>
+</html>

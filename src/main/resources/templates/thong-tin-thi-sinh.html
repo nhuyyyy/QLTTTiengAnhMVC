@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="/flagments/header::header">
+        <title>Title</title>
+    </th:block>
+</head>
+<body id="page-top">
+<th:block th:replace="/flagments/sidebar::sidebar"></th:block>
+<header class="masthead">
+    <div class="container px-4 px-lg-5 h-100">
+        <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+            <div class="col-lg-8 align-self-end">
+                <h1 class="text-white font-weight-bold">Tiếng anh là dễ</h1>
+                <hr class="divider" />
+            </div>
+            <div class="col-lg-8 align-self-baseline">
+                <p class="text-white-75 mb-5">Chúng tôi mang đến cho bạn những kiến thức vô cùng bổ ích và thú vị</p>
+                <a class="btn btn-primary btn-xl" href="#contact">Đăng kí thi ngay</a>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Contact-->
+<section class="page-section" id="contact">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-lg-8 col-xl-6 text-center">
+                <h2 class="mt-0">Thông tin thí sinh dự thi</h2>
+                <hr class="divider" />
+            </div>
+        </div>
+        <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
+            <div class="col-lg-6">
+                <form action="#" th:action="@{/thong-tin-thi-sinh.html}" th:object="${thiSinhForm}" method="post">
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-md-5 pr-1">
+                                <div class="form-group">
+                                    <label>Họ Tên Thí Sinh</label>
+                                    <input th:field="*{name}" type="text" class="form-control" name="hoten" value="" >
+                                </div>
+                            </div>
+                            <div class="col-md-5 pr-1">
+                                <div class="form-group">
+                                    <label>Số Điện Thoại</label>
+                                    <input  th:field="*{phone}" type="text" class="form-control" name="sdt" value="" >
+                                </div>
+                            </div>
+                           <div class="row" style="margin-top: 20px">
+                               <div class="col-md-3">
+                               </div>
+                               <div class="col-md-6">
+                                       <button class="btn btn-primary btn-xl" id="submitButton" type="submit">Tìm Kiếm</button>
+                               </div>
+                               <div class="col-md-3">
+                               </div>
+
+                           </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="row">
+                    <div >
+                        <label>-----------------------------------------</label>
+                    </div>
+                    <h2 class="mt-0">Thông tin thí sinh</h2>
+                    <div th:if="${list !=null}">
+                        <th:block th:each=" obj :${list}">
+                            <div class="col-md-5 pr-1">
+                                <div class="form-group">
+                                    <label>Số Báo Danh: </label>
+                                    <label class="col-form-label" th:text="${obj.getSoBaoDanh()}"></label>
+                                </div>
+                            </div>
+                            <div class="col-md-5 pr-1">
+                                <div class="form-group">
+                                    <label>Tên Phòng Thi: </label>
+                                    <label class="col-form-label" th:text="${obj.getPhong()}"></label>
+                                </div>
+                            </div>
+                            <div class="col-md-5 pr-1">
+                                <div class="form-group">
+                                    <label>Điểm Nghe: </label>
+                                    <label class="col-form-label" th:text="${obj.getNghe()}"></label>
+                                </div>
+                            </div>
+                            <div class="col-md-5 pr-1">
+                                <div class="form-group">
+                                    <label>Điểm Nói: </label>
+                                    <label class="col-form-label" th:text="${obj.getNoi()}"> </label>
+                                </div>
+                            </div>
+                            <div class="col-md-5 pr-1">
+                                <div class="form-group">
+                                    <label>Điểm Đọc: </label>
+                                    <label class="col-form-label" th:text="${obj.getDoc()}"></label>
+                                </div>
+                            </div>
+                            <div class="col-md-5 pr-1">
+                                <div class="form-group">
+                                    <label>Điểm Viết: </label>
+                                    <label class="col-form-label" th:text="${obj.getViet()}"> </label>
+                                </div>
+                            </div>
+                        </th:block>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<th:block th:replace="/flagments/footer::footer"></th:block>
+</body>
+</html>

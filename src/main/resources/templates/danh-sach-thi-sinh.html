@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="/flagments/header::header">
+        <title>Title</title>
+    </th:block>
+</head>
+<body id="page-top">
+<th:block th:replace="/flagments/sidebar::sidebar"></th:block>
+<header class="masthead">
+    <div class="container px-4 px-lg-5 h-100">
+        <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+            <div class="col-lg-8 align-self-end">
+                <h1 class="text-white font-weight-bold">Tiếng anh là dễ</h1>
+                <hr class="divider" />
+            </div>
+            <div class="col-lg-8 align-self-baseline">
+                <p class="text-white-75 mb-5">Chúng tôi mang đến cho bạn những kiến thức vô cùng bổ ích và thú vị</p>
+                <a class="btn btn-primary btn-xl" href="#contact">Đăng kí thi ngay</a>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Contact-->
+<section class="page-section" id="contact">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-lg-8 col-xl-6 text-center">
+                <h2 class="mt-0">Thông tin thí sinh dự thi</h2>
+            </div>
+        </div>
+        <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
+            <form action="#" th:action="@{/danh-sach-thi-sinh.html}" th:object="${danhSachThiSinhForm}" method="post">
+            <div class="row">
+                <div class="form-select mb-3">
+                    <label for="trinhDo">Tìm kiếm với</label>
+                    <select th:field="*{option}" id="trinhDo" class="form-control">
+                        <option th:value="P" th:text="Phong"></option>
+                        <option th:value="K" th:text="Khoa"></option>
+                    </select>
+                </div>
+            </div>
+                <div class="row">
+                <div class="form-select mb-3">
+                    <label for="phongThi">Phòng Thi</label>
+                    <select id="phongThi" class="form-control" th:field="*{phongThiId}">
+                        <option th:each="phongThi : ${phongThis}" th:value="${phongThi.getId()}" th:text="${phongThi.getName()}"></option>
+                    </select>
+                </div>
+                <div class="col-md-5 pr-1">
+                    <div class="form-group">
+                        <div class="form-select mb-3">
+                            <label for="khoaThi">Khóa Thi</label>
+                            <select id="khoaThi" class="form-control" th:field="*{khoaThiId}">
+                                <option th:each="khoaThi : ${khoaThis}" th:value="${khoaThi.getKhoaThiId()}" th:text="${khoaThi.getTenKhoa()}"></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="row" style="margin-top: 20px">
+                    <div class="col-md-3">
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn btn-primary btn-xl" id="submitButton" type="submit">Tìm Kiếm</button>
+                    </div>
+                    <div class="col-md-3">
+                    </div>
+
+                </div>
+            </form>
+            <div>
+               <br/>
+            </div>
+            <div class="col-lg-6">
+                <table id="example" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                    <tr>
+                        <th>Họ Tên Thí Sinh</th>
+                        <th>Số Báo Danh</th>
+                        <th>CMND</th>
+                        <th>Số Điện Thoại</th>
+                        <th>Nơi Sinh</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each=" danhSachThiSinh :${danhSachThiSinhs}">
+                        <td th:text="${danhSachThiSinh.getTen()}">C.Huyền</td>
+                        <td  th:text="${danhSachThiSinh.getSoBaoDanh()}">A002</td>
+                        <td th:text="${danhSachThiSinh.getCmnd()}" >2568956235</td>
+                        <td th:text="${danhSachThiSinh.getSoDienThoai()}" >0235689562</td>
+                        <td th:text="${danhSachThiSinh.getNoiSinh()}" >Đồng Nai</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+<th:block th:replace="/flagments/footer::footer"></th:block>
+<script  type="text/javascript">
+    $(document).ready(function() {
+        $('#example').DataTable();
+    } );
+</script>
+</body>
+</html>

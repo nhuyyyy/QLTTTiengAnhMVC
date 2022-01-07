@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="/flagments/header::header">
+        <title>Title</title>
+    </th:block>
+</head>
+<body id="page-top">
+<th:block th:replace="/flagments/sidebar::sidebar"></th:block>
+<header class="masthead">
+    <div class="container px-4 px-lg-5 h-100">
+        <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+            <div class="col-lg-8 align-self-end">
+                <h1 class="text-white font-weight-bold">Tiếng anh là dễ</h1>
+                <hr class="divider" />
+            </div>
+            <div class="col-lg-8 align-self-baseline">
+                <p class="text-white-75 mb-5">Chúng tôi mang đến cho bạn những kiến thức vô cùng bổ ích và thú vị</p>
+                <a class="btn btn-primary btn-xl" href="#contact">Đăng kí thi ngay</a>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Contact-->
+<section class="page-section" id="contact">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-lg-8 col-xl-6 text-center">
+                <h2 class="mt-0">Thông tin thí sinh dự thi</h2>
+                <hr class="divider" />
+                <p class="text-muted mb-5">Vui lòng điền đầy đủ thông tin bên dưới sau đó in giấy dự thi và nộp lại tại trung tâm</p>
+            </div>
+        </div>
+        <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
+            <div class="col-lg-6">
+                <form id="contactForm" action="#" th:action="@{/dang-ky}" th:object="${dangKiForm}" method="post">
+                    <!-- Name input-->
+                    <div class="form-floating mb-3">
+                        <input class="form-control" th:field="*{hoTen}" id="name" type="text" placeholder="Nhập họ tên..." data-sb-validations="required" />
+                        <label for="name">Họ và tên</label>
+                        <div class="invalid-feedback" data-sb-feedback="name:required">vui lòng nhập họ tên.</div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input th:field="*{ngaySinh}" type="date" class="form-control">
+                        <label for="name">Ngày sinh</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" th:field="*{cmnd}" id="cmnd" type="text" placeholder="Nhập cmnd..." data-sb-validations="required" />
+                        <label for="name">Số cmnd</label>
+                        <div class="invalid-feedback" data-sb-feedback="name:required">vui lòng nhập cmnd .</div>
+                    </div>
+                    <!-- Email address input-->
+                    <div class="form-floating mb-3">
+                        <input class="form-control" th:field="*{email}" id="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" />
+                        <label for="email">Email</label>
+                        <div class="invalid-feedback" data-sb-feedback="email:required">Nhập email.</div>
+                        <div class="invalid-feedback" data-sb-feedback="email:email">Email sai.</div>
+                    </div>
+                    <!-- Phone number input-->
+                    <div class="form-floating mb-3">
+                        <input class="form-control" th:field="*{soDienThoai}" id="phone" type="tel" placeholder="0123456789" data-sb-validations="required" />
+                        <label for="phone">Số điện thoại</label>
+                        <div class="invalid-feedback" data-sb-feedback="phone:required">Vui lòng nhập số điện thoại.</div>
+                    </div>
+                    <div class="form-select mb-3">
+                        <label for="trinhDo">Trình độ</label>
+                        <select th:field="*{trinhDo}" id="trinhDo" class="form-control">
+                            <option th:value="A2" th:text="A2"></option>
+                            <option th:value="B1" th:text="B1"></option>
+                        </select>
+                    </div>
+                    <div class="form-select mb-3">
+                        <label for="khoaThi">Khóa Thi</label>
+                        <select id="khoaThi" class="form-control" th:field="*{khoaThiId}">
+                            <option th:each="khoaThi : ${khoathis}" th:value="${khoaThi.getKhoaThiId()}" th:text="${khoaThi.getTenKhoa()}"></option>
+                        </select>
+                    </div>
+                    <div class="d-grid"><button class="btn btn-primary btn-xl" id="submitButton" type="submit">Đăng kí</button></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<th:block th:replace="/flagments/footer::footer"></th:block>
+</body>
+</html>
